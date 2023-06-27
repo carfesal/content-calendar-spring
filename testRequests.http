@@ -1,0 +1,29 @@
+### Create new Content
+POST http://localhost:8080/api/content
+Content-Type: application/json
+
+{
+  "id": 3,
+  "title": "My first Spring content",
+  "description": "My first description",
+  "status": "COMPLETED",
+  "contentType": "ARTICLE",
+  "dateCreated": "2023-06-27T11:58:52.5554138",
+  "dateUpdated": null,
+  "url": ""
+}
+
+### UPDATE new Content
+PUT http://localhost:8080/api/content/3
+Content-Type: application/json
+
+{
+  "id": 3,
+  "title": "My first UPDATE POST",
+  "description": "My first description",
+  "status": "COMPLETED",
+  "contentType": "ARTICLE",
+  "dateCreated": "2023-06-27T11:58:52.5554138",
+  "dateUpdated": "2023-06-27T11:58:52.5554138",
+  "url": ""
+}
