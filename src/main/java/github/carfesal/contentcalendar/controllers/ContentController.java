@@ -2,6 +2,7 @@ package github.carfesal.contentcalendar.controllers;
 
 import github.carfesal.contentcalendar.models.Content;
 import github.carfesal.contentcalendar.repositories.ContentCollectionRepository;
+import github.carfesal.contentcalendar.repositories.ContentJDBCTemplateRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,7 @@ import java.util.Optional;
 public class ContentController {
 
     private final ContentCollectionRepository repository;
+//    private final ContentJDBCTemplateRepository repository;
 
     public ContentController(ContentCollectionRepository repository){
         this.repository = repository;
