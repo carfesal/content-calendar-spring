@@ -1,26 +1,22 @@
 package github.carfesal.contentcalendar.controllers;
 
 import github.carfesal.contentcalendar.models.Content;
-import github.carfesal.contentcalendar.repositories.ContentCollectionRepository;
-import github.carfesal.contentcalendar.repositories.ContentJDBCTemplateRepository;
+import github.carfesal.contentcalendar.models.Status;
+import github.carfesal.contentcalendar.repositories.IContentRepository;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/content")
 @CrossOrigin
 public class ContentController {
 
-    private final ContentCollectionRepository repository;
-//    private final ContentJDBCTemplateRepository repository;
+    private final IContentRepository repository;
 
-    public ContentController(ContentCollectionRepository repository){
+    public ContentController(IContentRepository repository){
         this.repository = repository;
     }
 
@@ -53,6 +49,16 @@ public class ContentController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Integer id){
-        repository.delete(id);
+        repository.deleteById(id);
+    }
+
+    @GetMapping("/filter/{keyword}")
+    public List<Content> findByTitle(@PathVariable String keyword){
+        return repository.findAllByTitleContains(keyword);
+    }
+
+    @GetMapping("/filter/status/{status}")
+    public List<Content> findByStatus(@PathVariable Status status){
+        return repository.listByStatus(status);
     }
 }
